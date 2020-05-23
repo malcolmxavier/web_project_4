@@ -1,7 +1,10 @@
 .content {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   justify-content: space-between;
+=======
+>>>>>>> feature/profile
   margin: 42px 19px 48px 19px;
   padding: 0;
 }

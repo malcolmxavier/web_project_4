@@ -1,6 +1,24 @@
+<<<<<<< HEAD
 .profile {
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
+=======
+@import url('./__info/profile__info.css');
+
+@import url('./__name-and-edit-button/profile__name-and-edit-button.css');
+
+@import url('./__name/profile__name.css');
+
+@import url('./__occupation/profile__occupation.css');
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+>>>>>>> feature/profile
 }
