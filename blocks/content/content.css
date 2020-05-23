@@ -1,0 +1,7 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 42px 19px 48px 19px;
+  padding: 0;
+}
