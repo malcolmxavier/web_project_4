@@ -1,16 +1,9 @@
-# Project 4: Around The U.S.
+Project name: Malcolm X's 4th Yandex Project v1.0
 
-### Overview
+This is a sample project to demonstrate grasp of HTML, CSS, and JS skills.
 
-* Figma
-* Images
+This project employs HTML, CSS, JS, and Nested BEM structure.
 
-**Figma**
+Improvements to code, to increase efficiency and adherence to specifications provided by Yandex, will be made as necessary.
 
-* [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+https://malcolmxavier.github.io/web_project_4/
