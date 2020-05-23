@@ -1,0 +1,9 @@
+.footer {
+  margin: 0 19px 36px 19px;
+  padding: 0;
+  font-weight: normal;
+  font-size: .875rem;
+  line-height: 1.0625rem;
+  color: #545454;
+  align-self: flex-start;
+}
