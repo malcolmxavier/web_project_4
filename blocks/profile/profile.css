@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-.profile {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-=======
 @import url('./__info/profile__info.css');
 
 @import url('./__name-and-edit-button/profile__name-and-edit-button.css');
@@ -20,5 +13,4 @@
   margin: 0;
   padding: 0;
   align-items: center;
->>>>>>> feature/profile
 }
