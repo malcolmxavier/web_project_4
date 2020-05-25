@@ -1,9 +1,23 @@
 .footer {
+  width: 100vw;
+  max-width: 320px;
   margin: 0 19px 36px 19px;
   padding: 0;
   font-weight: normal;
   font-size: .875rem;
   line-height: 1.0625rem;
   color: #545454;
-  align-self: flex-start;
+  text-align: flex-start;
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    max-width: 620px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .footer {
+    max-width: 920px;
+  }
 }
