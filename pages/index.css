@@ -18,6 +18,14 @@
 
 @import url('../blocks/add-button/add-button.css');
 
+@import url('../blocks/popup/popup.css');
+
+@import url('../blocks/popup/_opened/popup_opened.css');
+
+@import url('../blocks/close-button/close-button.css');
+
+@import url('../blocks/save-button/save-button.css');
+
 @import url('../blocks/photo-grid/photo-grid.css');
 
 @import url('../blocks/like-button/like-button.css');
