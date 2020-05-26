@@ -8,9 +8,18 @@
   background-position: center;
   background-repeat: no-repeat;
   align-self: center;
+  position: absolute;
+  top: 20px;
+  right: -24px;
 }
 
 .edit-button:hover {
   opacity: .25;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px){
+  .edit-button {
+    right: -48px
+  }
 }

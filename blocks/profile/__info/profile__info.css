@@ -1,8 +1,8 @@
 .profile__info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 @media screen and (min-width: 768px) {
