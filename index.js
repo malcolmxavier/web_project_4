@@ -5,12 +5,9 @@ const popup = document.querySelector('.popup');
 const form = document.querySelector('.popup__form');
 const popupName = document.querySelector('.popup__name');
 const popupOccupation = document.querySelector('.popup__occupation');
-const saveButton = document.querySelector('.save-button');
 const closeButton = document.querySelector('.close-button');
 
-function openPopup () {
-  popup.classList.toggle('popup_opened');
-
+function updateProfile (profileName, profileOccupation) {
   if (profileName) {
     popupName.value = profileName.textContent;
   } else {
@@ -24,21 +21,22 @@ function openPopup () {
   }
 }
 
+function togglePopup () {
+  popup.classList.toggle('popup_opened');
+  updateProfile (profileName, profileOccupation);
+}
+
 function submitForm (event) {
-  event.preventDefault();
+  event.preventDefault ();
 
   profileName.textContent = popupName.value;
   profileOccupation.textContent = popupOccupation.value;
 
-  closePopup ();
+  togglePopup ();
 }
 
-function closePopup () {
-  popup.classList.toggle('popup_opened');
-}
+editButton.addEventListener('click', togglePopup);
 
-editButton.addEventListener('click', openPopup);
-
-closeButton.addEventListener('click', closePopup);
+closeButton.addEventListener('click', togglePopup);
 
 form.addEventListener('submit', submitForm);
