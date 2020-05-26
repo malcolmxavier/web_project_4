@@ -1,30 +1,12 @@
+@import url('./__list/photo-grid__list.css');
+
 @import url('./__item/photo-grid__item.css');
 
-@import url('./__image/photo-grid__image.css');
-
-@import url('./__label-and-like-button/photo-grid__label-and-like-button.css');
+@import url('./__description/photo-grid__description.css');
 
 @import url('./__label/photo-grid__label.css');
 
 .photo-grid {
   margin: 36px 19px 0 19px;
   padding: 0;
-  display: grid;
-  grid-row-gap: 20px;
-  grid-template-rows: repeat(6, 1fr);
-}
-
-@media screen and (min-width: 768px) {
-  .photo-grid {
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 18px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .photo-grid {
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-  }
 }

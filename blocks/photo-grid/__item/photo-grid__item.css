@@ -1,7 +1,9 @@
 .photo-grid__item {
+  width: 282px;
+  height: 361px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   background-color: #ffffff;
   border-radius: 10px;
 }
