@@ -1,4 +1,4 @@
-Project name: Malcolm X's 4th Yandex Project v1.0
+Project name: Malcolm X's 4th Yandex Project v2.0
 
 This is a sample project to demonstrate grasp of HTML, CSS, and JS skills.
 
