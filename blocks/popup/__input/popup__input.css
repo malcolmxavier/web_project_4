@@ -1,10 +1,15 @@
-.popup__occupation {
+.popup__input {
   margin: 29.74px 0 0 0;
   padding: 0;
+  height: 27.34px;
   font-weight: normal;
   font-size: .875rem;
   line-height: 1.0625rem;
   color: #000000;
   border: none;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.popup__input:first-of-type {
+  margin: 0;
 }

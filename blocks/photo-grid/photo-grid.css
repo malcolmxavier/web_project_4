@@ -2,6 +2,8 @@
 
 @import url('./__item/photo-grid__item.css');
 
+@import url('./__image/photo-grid__image.css');
+
 @import url('./__description/photo-grid__description.css');
 
 @import url('./__label/photo-grid__label.css');

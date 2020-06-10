@@ -24,47 +24,6 @@
 
     <section class='photo-grid'>
       <ul class='photo-grid__list'>
-        <li class='photo-grid__item' style="background-image: url('./images/golden-gate-bridge.jpg'); background-size: 282px 282px; background-repeat: no-repeat;">
-          <div class="photo-grid__description">
-            <h3 class="photo-grid__label">Golden Gate Bridge</h3>
-            <button class="like-button"></button>
-          </div>
-        </li>
-
-        <li class='photo-grid__item' style="background-image: url('./images/circular-gates.jpg'); background-size: 282px 282px; background-repeat: no-repeat;">
-          <div class="photo-grid__description">
-            <h3 class="photo-grid__label">Circular Gates</h3>
-            <button class="like-button"></button>
-          </div>
-        </li>
-
-        <li class='photo-grid__item' style="background-image: url('./images/lifeguard-station.jpg'); background-size: 282px 282px; background-repeat: no-repeat;">
-          <div class="photo-grid__description">
-            <h3 class="photo-grid__label">Lifeguard Station</h3>
-            <button class="like-button"></button>
-          </div>
-        </li>
-
-        <li class='photo-grid__item' style="background-image: url('./images/green-and-white-dock.jpg'); background-size: 282px 282px; background-repeat: no-repeat;">
-          <div class="photo-grid__description">
-            <h3 class="photo-grid__label">Green and White Dock</h3>
-            <button class="like-button"></button>
-          </div>
-        </li>
-
-        <li class='photo-grid__item' style="background-image: url('./images/island-from-land.jpg'); background-size: 282px 282px; background-repeat: no-repeat;">
-          <div class="photo-grid__description">
-            <h3 class="photo-grid__label">Island From Land</h3>
-            <button class="like-button"></button>
-          </div>
-        </li>
-
-        <li class='photo-grid__item' style="background-image: url('./images/overhead-dock.jpg'); background-size: 282px 282px; background-repeat: no-repeat;">
-          <div class="photo-grid__description">
-            <h3 class="photo-grid__label">Overhead Dock</h3>
-            <button class="like-button"></button>
-          </div>
-        </li>
       </ul>
     </section>
   </main>
@@ -73,17 +32,50 @@
     <p>&copy; 2020 Around The U.S.</p>
   </footer>
 
-  <section class='popup'>
-    <div class='popup__container'>
+  <section class='popup popup_type_edit-profile'>
+    <div class='popup__container popup__container_type_form'>
       <button class='close-button'></button>
       <h4 class='popup__title'>Edit profile</h4>
-      <form class='popup__form'>
-        <input class='popup__name' type='text' value='Name'>
-        <input class='popup__occupation' type='text' value='About Me'>
+      <form class='popup__form popup__form_type_edit-profile'>
+        <input class='popup__input popup__input_type_name' type='text' placeholder='Name'>
+        <input class='popup__input popup__input_type_occupation' type='text' placeholder='About Me'>
         <button class='save-button' type='submit'></button>
       </form>
     </div>
   </section>
+
+  <section class='popup popup_type_add-card'>
+    <div class='popup__container popup__container_type_form'>
+      <button class='close-button'></button>
+      <h4 class='popup__title'>New Place</h4>
+      <form class='popup__form popup__form_type_add-card'>
+        <input class='popup__input popup__input_type_label' type='text' placeholder='Label'>
+        <input class='popup__input popup__input_type_url' type='url' placeholder='Image URL'>
+        <button class='save-button' type='submit'></button>
+      </form>
+    </div>
+  </section>
+
+  <section class='popup popup_type_image'>
+    <div class='popup__container popup__container_type_image'>
+      <button class='close-button'></button>
+      <figure>
+        <img src='' alt=''>
+        <figcaption></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <template class='card-template'>
+    <li class='photo-grid__item'>
+      <div class='photo-grid__image'></div>
+      <button class='trash-button'></button>
+      <div class='photo-grid__description'>
+        <h3 class='photo-grid__label'></h3>
+        <button class='like-button'></button>
+      </div>
+    </li>
+  </template>
 
   <script src='index.js'></script>
 </body>

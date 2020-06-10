@@ -4,11 +4,7 @@
 
 @import url('./__form/popup__form.css');
 
-@import url('./__name/popup__name.css');
-
-@import url('./__line/popup__line.css');
-
-@import url('./__occupation/popup__occupation.css');
+@import url('./__input/popup__input.css');
 
 .popup {
   display: none;
