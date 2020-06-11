@@ -3,7 +3,6 @@
   height: 361px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   background-color: #ffffff;
   border-radius: 10px;
   position: relative;

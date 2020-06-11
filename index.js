@@ -87,14 +87,15 @@ const createCard = (data) => {
 
   cardImage.style.backgroundImage = `url(${data.link})`;
   cardLabel.textContent = data.label;
-  image.src = `${data.link}`
-  caption.textContent = cardLabel.textContent;
 
   cardTrashButton.addEventListener('click', (e) => {
     e.target.closest('.photo-grid__item').remove();
   });
 
   cardImage.addEventListener('click', () => {
+    image.src = `${data.link}`;
+    image.alt = cardLabel.textContent;
+    caption.textContent = cardLabel.textContent;
     togglePopup(imagePopup);
   });
 
