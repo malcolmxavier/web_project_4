@@ -30,4 +30,6 @@
 
 @import url('../blocks/like-button/like-button.css');
 
+@import url('../blocks/like-button/_clicked/like-button_clicked.css');
+
 @import url('../blocks/footer/footer.css');

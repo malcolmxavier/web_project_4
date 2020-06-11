@@ -10,3 +10,8 @@
   align-self: center;
   border: none;
 }
+
+.like-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
