@@ -15,27 +15,27 @@ const editProfileCloseButton = editProfilePopup.querySelector('.close-button');
 const photoGridList = document.querySelector('.photo-grid__list');
 const initialCards = [
   {
-    name: 'Overhead Dock',
+    label: 'Overhead Dock',
     link: './images/overhead-dock.jpg'
   },
   {
-    name: 'Island From Land',
+    label: 'Island From Land',
     link: './images/island-from-land.jpg'
   },
   {
-    name: 'Green and White Dock',
+    label: 'Green and White Dock',
     link: './images/green-and-white-dock.jpg'
   },
   {
-    name: 'Lifeguard Station',
+    label: 'Lifeguard Station',
     link: './images/lifeguard-station.jpg'
   },
   {
-    name: 'Circular Gates',
+    label: 'Circular Gates',
     link: './images/circular-gates.jpg'
   },
   {
-    name: 'Golden Gate Bridge',
+    label: 'Golden Gate Bridge',
     link: './images/golden-gate-bridge.jpg'
   }
 ];
@@ -50,6 +50,8 @@ const addCardCloseButton = addCardPopup.querySelector('.close-button');
 //Image Popup
 
 const imagePopup = document.querySelector('.popup_type_image');
+const image = document.querySelector('.popup__image');
+const caption = document.querySelector('.popup__caption');
 const imageCloseButton = imagePopup.querySelector('.close-button');
 
 // Buttons
@@ -84,7 +86,9 @@ const createCard = (data) => {
   const cardLikeButton = cardElements.querySelector('.like-button');
 
   cardImage.style.backgroundImage = `url(${data.link})`;
-  cardLabel.textContent = data.name;
+  cardLabel.textContent = data.label;
+  image.src = `${data.link}`
+  caption.textContent = cardLabel.textContent;
 
   cardTrashButton.addEventListener('click', (e) => {
     e.target.closest('.photo-grid__item').remove();
