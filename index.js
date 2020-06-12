@@ -120,7 +120,18 @@ function submitProfileForm (evt) {
   profileName.textContent = popupName.value;
   profileOccupation.textContent = popupOccupation.value;
 
-  togglePopup ();
+  togglePopup (editProfilePopup);
+}
+
+function submitCardForm (evt) {
+  evt.preventDefault ();
+
+  data = {
+    label: cardForm.querySelector('.popup__input_type_label').value,
+    link: cardForm.querySelector('.popup__input_type_url').textContent
+  }
+
+  renderCard(data);
 }
 
 editButton.addEventListener('click', () => {
@@ -141,7 +152,7 @@ addCardCloseButton.addEventListener('click', () => {
   togglePopup(addCardPopup);
 });
 
-cardForm.addEventListener('submit', renderCard);
+cardForm.addEventListener('submit', submitCardForm);
 
 imageCloseButton.addEventListener('click', () => {
   togglePopup(imagePopup);
