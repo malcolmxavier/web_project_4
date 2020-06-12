@@ -128,7 +128,7 @@ function submitCardForm (evt) {
 
   data = {
     label: cardForm.querySelector('.popup__input_type_label').value,
-    link: cardForm.querySelector('.popup__input_type_url').textContent
+    link: cardForm.querySelector('.popup__input_type_url').value
   }
 
   renderCard(data);
