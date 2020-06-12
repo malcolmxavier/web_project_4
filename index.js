@@ -126,12 +126,14 @@ function submitProfileForm (evt) {
 function submitCardForm (evt) {
   evt.preventDefault ();
 
-  data = {
+  const data = {
     label: cardForm.querySelector('.popup__input_type_label').value,
     link: cardForm.querySelector('.popup__input_type_url').value
-  }
+  };
 
   renderCard(data);
+
+  togglePopup(addCardPopup);
 }
 
 editButton.addEventListener('click', () => {
