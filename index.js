@@ -67,14 +67,14 @@ function closePopup(popup) {
 function closePopupWithEscape(evt) {
   if (evt.which === 27) {
     closePopup(document.querySelector('.popup_opened'));
-    evt.target.removeEventListener('keydown', closePopupWithEscape);
+    document.removeEventListener('keydown', closePopupWithEscape);
   }
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
-  popup.addEventListener('keydown', closePopupWithEscape);
+  document.addEventListener('keydown', closePopupWithEscape);
 
   if (popup.classList.contains('.popup_type_edit-profile')) {
     if (profileName) {
