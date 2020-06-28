@@ -65,7 +65,8 @@ function closePopup(popup) {
 };
 
 function closePopupWithEscape(evt) {
-  if (evt.which === 27) {
+  const ESC_KEY = 27;
+  if (evt.which === ESC_KEY) {
     closePopup(document.querySelector('.popup_opened'));
     document.removeEventListener('keydown', closePopupWithEscape);
   }
