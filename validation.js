@@ -1,13 +1,13 @@
-function showErrorMessage (input, form, {errorClass, inputErrorClass, ...rest}) {
-  const error = document.querySelector('#' + input.id + '-error');
+function showErrorMessage (input, errorClass, inputErrorClass) {
+  const error = document.querySelector(`#${input.id}-error`);
   error.textContent = input.validationMessage;
 
   error.classList.add(errorClass);
   input.classList.add(inputErrorClass);
 };
 
-function hideErrorMessage (input, form, {errorClass, inputErrorClass, ...rest}) {
-  const error = document.querySelector('#' + input.id + '-error');
+function hideErrorMessage (input, errorClass, inputErrorClass) {
+  const error = document.querySelector(`#${input.id}-error`);
   error.textContent = '';
 
   error.classList.remove(errorClass);
@@ -22,7 +22,7 @@ function checkInputValidity (input, form, rest) {
   }
 };
 
-function toggleButtonState (inputs, button, {inactiveButtonClass, ...rest}) {
+function toggleButtonState (inputs, button, inactiveButtonClass) {
   const isValid = inputs.every((input) => input.validity.valid);
 
   if (isValid) {
@@ -32,7 +32,7 @@ function toggleButtonState (inputs, button, {inactiveButtonClass, ...rest}) {
   }
 }
 
-function enableValidation ({formSelector, inputSelector, submitButtonSelector, ...rest}) {
+function enableValidation (formSelector, inputSelector, submitButtonSelector) {
   const forms = [...document.querySelectorAll(formSelector)];
 
   forms.forEach((form) => {
