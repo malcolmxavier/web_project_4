@@ -1,9 +1,31 @@
+//Forms
+
+import FormValidator from 'FormValidator.js';
+import Card from 'Card.js';
+
+const defaultSettings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible"
+}
+
+const editProfileForm = document.querySelector('.popup__form_type_edit-profile');
+const addCardForm = document.querySelector('.popup__form_type_add-card');
+
+const editProfileValidation = new FormValidator (defaultSettings, editProfileForm);
+const addCardValidation = new FormValidator (defaultSettings, addCardForm);
+
+editProfileValidation.enableValidation();
+addCardValidation.enableValidation();
+
 //Profile
 
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
 const editProfilePopup = document.querySelector('.popup_type_edit-profile');
-const profileForm = document.querySelector('.popup__form_type_edit-profile');
 
 //Profile Popup
 
@@ -13,34 +35,6 @@ const editProfileCloseButton = editProfilePopup.querySelector('.close-button');
 
 //Photo Grid
 const photoGridList = document.querySelector('.photo-grid__list');
-const initialCards = [
-  {
-    label: 'Overhead Dock',
-    link: './images/overhead-dock.jpg'
-  },
-  {
-    label: 'Island From Land',
-    link: './images/island-from-land.jpg'
-  },
-  {
-    label: 'Green and White Dock',
-    link: './images/green-and-white-dock.jpg'
-  },
-  {
-    label: 'Lifeguard Station',
-    link: './images/lifeguard-station.jpg'
-  },
-  {
-    label: 'Circular Gates',
-    link: './images/circular-gates.jpg'
-  },
-  {
-    label: 'Golden Gate Bridge',
-    link: './images/golden-gate-bridge.jpg'
-  }
-];
-const cardTemplate = document.querySelector('.card-template').content.querySelector('.photo-grid__item');
-const cardForm = document.querySelector('.popup__form_type_add-card');
 
 //Add Card Popup
 
@@ -128,7 +122,7 @@ initialCards.forEach((data) => {
   renderCard(data);
 });
 
-function submitProfileForm(evt) {
+function submitEditProfileForm(evt) {
   evt.preventDefault();
 
   profileName.textContent = popupName.value;
@@ -137,12 +131,12 @@ function submitProfileForm(evt) {
   closePopup(editProfilePopup);
 };
 
-function submitCardForm(evt) {
+function submitAddCardForm(evt) {
   evt.preventDefault();
 
   const data = {
-    label: cardForm.querySelector('.popup__input_type_label').value,
-    link: cardForm.querySelector('.popup__input_type_url').value
+    label: addCardForm.querySelector('.popup__input_type_label').value,
+    link: addCardForm.querySelector('.popup__input_type_url').value
   };
 
   renderCard(data);
@@ -158,7 +152,7 @@ editProfileCloseButton.addEventListener('click', () => {
   closePopup(editProfilePopup);
 });
 
-profileForm.addEventListener('submit', submitProfileForm);
+editProfileForm.addEventListener('submit', submitEditProfileForm);
 
 addButton.addEventListener('click', () => {
   openPopup(addCardPopup);
@@ -168,7 +162,7 @@ addCardCloseButton.addEventListener('click', () => {
   closePopup(addCardPopup);
 });
 
-cardForm.addEventListener('submit', submitCardForm);
+addCardForm.addEventListener('submit', submitAddCardForm);
 
 imageCloseButton.addEventListener('click', () => {
   closePopup(imagePopup);
