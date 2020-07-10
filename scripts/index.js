@@ -1,22 +1,23 @@
-//Forms
+//Imports
 
-import FormValidator from 'FormValidator.js';
-import Card from 'Card.js';
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+
+// Form Validation
 
 const defaultSettings = {
-  formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible"
-}
+};
 
 const editProfileForm = document.querySelector('.popup__form_type_edit-profile');
 const addCardForm = document.querySelector('.popup__form_type_add-card');
 
-const editProfileValidation = new FormValidator (defaultSettings, editProfileForm);
-const addCardValidation = new FormValidator (defaultSettings, addCardForm);
+const editProfileValidation = new FormValidator(defaultSettings, editProfileForm);
+const addCardValidation = new FormValidator(defaultSettings, addCardForm);
 
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
@@ -25,28 +26,49 @@ addCardValidation.enableValidation();
 
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
-const editProfilePopup = document.querySelector('.popup_type_edit-profile');
 
 //Profile Popup
 
+const editProfilePopup = document.querySelector('.popup_type_edit-profile');
 const popupName = document.querySelector('.popup__input_type_name');
 const popupOccupation = document.querySelector('.popup__input_type_occupation');
 const editProfileCloseButton = editProfilePopup.querySelector('.close-button');
 
 //Photo Grid
+
 const photoGridList = document.querySelector('.photo-grid__list');
+const cardTemplateSelector = '.card-template';
+const initialCards = [
+  {
+    label: 'Overhead Dock',
+    link: 'https://images.unsplash.com/photo-1531823920633-28bf6dee4e7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80'
+  },
+  {
+    label: 'Island From Land',
+    link: 'https://images.unsplash.com/photo-1505235901362-40f1b8b91573?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1957&q=80'
+  },
+  {
+    label: 'Blue and White Dock',
+    link: 'https://images.unsplash.com/photo-1503464093195-36b34a0869bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80'
+  },
+  {
+    label: 'Lifeguard Station',
+    link: 'https://images.unsplash.com/photo-1501240911044-638ddbf4e589?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80'
+  },
+  {
+    label: 'Circular Gates',
+    link: 'https://images.unsplash.com/photo-1527117499127-8169c886e66e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'
+  },
+  {
+    label: 'Golden Gate Bridge',
+    link: 'https://images.unsplash.com/photo-1551074698-a6b35d4ccc92?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2801&q=80'
+  }
+];
 
 //Add Card Popup
 
 const addCardPopup = document.querySelector('.popup_type_add-card');
 const addCardCloseButton = addCardPopup.querySelector('.close-button');
-
-//Image Popup
-
-const imagePopup = document.querySelector('.popup_type_image');
-const image = document.querySelector('.popup__image');
-const caption = document.querySelector('.popup__caption');
-const imageCloseButton = imagePopup.querySelector('.close-button');
 
 // Buttons
 const editButton = document.querySelector('.edit-button');
@@ -64,7 +86,7 @@ function closePopupWithEscape(evt) {
     closePopup(document.querySelector('.popup_opened'));
     document.removeEventListener('keydown', closePopupWithEscape);
   }
-}
+};
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -80,46 +102,15 @@ function openPopup(popup) {
       popupOccupation.value = profileOccupation.textContent;
     }
   }
-}
-
-function toggleLike(likeButton) {
-  likeButton.classList.toggle('like-button_clicked');
 };
 
-const createCard = (data) => {
-  const cardElements = cardTemplate.cloneNode(true);
-  const cardImage = cardElements.querySelector('.photo-grid__image');
-  const cardTrashButton = cardElements.querySelector('.trash-button');
-  const cardLabel= cardElements.querySelector('.photo-grid__label');
-  const cardLikeButton = cardElements.querySelector('.like-button');
-
-  cardImage.style.backgroundImage = `url(${data.link})`;
-  cardLabel.textContent = data.label;
-
-  cardTrashButton.addEventListener('click', (evt) => {
-    evt.target.closest('.photo-grid__item').remove();
-  });
-
-  cardImage.addEventListener('click', () => {
-    image.src = `${data.link}`;
-    image.alt = cardLabel.textContent;
-    caption.textContent = cardLabel.textContent;
-    openPopup(imagePopup);
-  });
-
-  cardLikeButton.addEventListener('click', () => {
-    toggleLike(cardLikeButton);
-  });
-
-  return cardElements;
-};
-
-const renderCard = (data) => {
-  photoGridList.prepend(createCard(data));
+const renderCard = (data, cardTemplateSelector) => {
+  const card = new Card(data, cardTemplateSelector);
+  photoGridList.prepend(card.createCard());
 };
 
 initialCards.forEach((data) => {
-  renderCard(data);
+  renderCard(data, cardTemplateSelector);
 });
 
 function submitEditProfileForm(evt) {
@@ -139,7 +130,7 @@ function submitAddCardForm(evt) {
     link: addCardForm.querySelector('.popup__input_type_url').value
   };
 
-  renderCard(data);
+  renderCard(data, cardTemplateSelector);
 
   closePopup(addCardPopup);
 };
@@ -164,16 +155,10 @@ addCardCloseButton.addEventListener('click', () => {
 
 addCardForm.addEventListener('submit', submitAddCardForm);
 
-imageCloseButton.addEventListener('click', () => {
-  closePopup(imagePopup);
-});
-
 window.addEventListener('click', (evt) => {
   if (evt.target == editProfilePopup) {
     closePopup(editProfilePopup);
   } else if (evt.target == addCardPopup) {
     closePopup(addCardPopup);
-  } else if (evt.target == imagePopup) {
-    closePopup (imagePopup);
   }
 });

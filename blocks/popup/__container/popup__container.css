@@ -2,4 +2,5 @@
 
 .popup__container {
   position: relative;
+  justify-content: center;
 }
