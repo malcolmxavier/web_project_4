@@ -65,13 +65,6 @@ const initialCards = [
   }
 ];
 
-//Image Popup
-
-const image = document.querySelector('.popup__image');
-const caption = document.querySelector('.popup__caption');
-const imagePopup = document.querySelector('.popup_type_image');
-const imagePopupCloseButton = imagePopup.querySelector('.close-button');
-
 //Add Card Popup
 
 const addCardPopup = document.querySelector('.popup_type_add-card');
@@ -108,12 +101,6 @@ function openPopup(popup) {
     if (profileOccupation) {
       popupOccupation.value = profileOccupation.textContent;
     }
-  }
-
-  if (popup.classList.contains('.popup_type_image')) {
-    image.src = this._link;
-    image.alt = this._label;
-    caption.textContent = this._label;
   }
 };
 

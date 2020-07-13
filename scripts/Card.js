@@ -23,12 +23,6 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
 
   document.addEventListener('keydown', closePopupWithEscape);
-
-  if (popup.classList.contains('.popup_type_image')) {
-    image.src = this._link;
-    image.alt = this._label;
-    caption.textContent = this._label;
-  }
 };
 
 imagePopupCloseButton.addEventListener('click', () => {
@@ -69,6 +63,9 @@ class Card {
 
     this._cardImage.addEventListener('click', () => {
       openPopup(imagePopup);
+      image.src = this._link;
+      image.alt = this._label;
+      caption.textContent = this._label;
     });
 
     this._cardTrashButton.addEventListener('click', (evt) => {
