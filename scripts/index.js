@@ -104,7 +104,7 @@ function openPopup(popup) {
   }
 };
 
-const renderCard = (data, cardTemplateSelector) => {
+const renderCard = (data) => {
   const card = new Card(data, cardTemplateSelector);
   photoGridList.prepend(card.createCard());
 };
@@ -156,9 +156,9 @@ addCardCloseButton.addEventListener('click', () => {
 addCardForm.addEventListener('submit', submitAddCardForm);
 
 window.addEventListener('click', (evt) => {
-  if (evt.target == editProfilePopup) {
+  if (evt.target === editProfilePopup) {
     closePopup(editProfilePopup);
-  } if (evt.target == addCardPopup) {
+  } if (evt.target === addCardPopup) {
     closePopup(addCardPopup);
   }
 });
