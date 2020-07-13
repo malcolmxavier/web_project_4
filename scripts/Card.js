@@ -30,7 +30,7 @@ imagePopupCloseButton.addEventListener('click', () => {
 });
 
 window.addEventListener('click', (evt) => {
-  if (evt.target == imagePopup) {
+  if (evt.target === imagePopup) {
     closePopup(imagePopup);
   }
 });
@@ -69,7 +69,7 @@ class Card {
     });
 
     this._cardTrashButton.addEventListener('click', (evt) => {
-      evt.target.closest('.photo-grid__item').remove();
+      this._cardElements.remove();
     });
 
     this._cardLikeButton.addEventListener('click', () => {
