@@ -1,9 +1,14 @@
 //Imports
 
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
+import './index.css';
+import FormValidator from '../components/FormValidator.js';
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
-// Form Validation
+//Form Validation
 
 const defaultSettings = {
   inputSelector: ".popup__input",
@@ -27,17 +32,22 @@ addCardValidation.enableValidation();
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
 
-//Profile Popup
+const profile = new UserInfo(profileName, profileOccupation);
 
-const editProfilePopup = document.querySelector('.popup_type_edit-profile');
+//Edit Profile Popup
+
+const editProfilePopupSelector = '.popup_type_edit-profile';
+
 const popupName = document.querySelector('.popup__input_type_name');
 const popupOccupation = document.querySelector('.popup__input_type_occupation');
-const editProfileCloseButton = editProfilePopup.querySelector('.close-button');
 
 //Photo Grid
 
-const photoGridList = document.querySelector('.photo-grid__list');
+const imagePopupSelector = '.popup_type_image';
 const cardTemplateSelector = '.card-template';
+const photoGridListSelector = '.photo-grid__list';
+const photoGridImage = document.querySelectorAll('.photo-grid__image');
+
 const initialCards = [
   {
     label: 'Overhead Dock',
@@ -67,51 +77,31 @@ const initialCards = [
 
 //Add Card Popup
 
-const addCardPopup = document.querySelector('.popup_type_add-card');
-const addCardCloseButton = addCardPopup.querySelector('.close-button');
+const addCardPopupSelector = '.popup_type_add-card';
 
 // Buttons
 const editButton = document.querySelector('.edit-button');
 const addButton = document.querySelector('.add-button');
 
-// Functions
+// Card Rendering and Image Popup Functionality
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
+const imagePopup = new PopupWithImage(imagePopupSelector);
+
+const handleCardClick = () => {
+  open(imagePopup)
+}
+
+const renderCard = (item) => {
+  const card = new Card(item, cardTemplateSelector, handleCardClick);
+  card.createCard();
 };
 
-function closePopupWithEscape(evt) {
-  const ESC_KEY = 27;
-  if (evt.which === ESC_KEY) {
-    closePopup(document.querySelector('.popup_opened'));
-    document.removeEventListener('keydown', closePopupWithEscape);
-  }
-};
+const photoGridList = new Section({initialCards, renderCard}, photoGridListSelector);
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
+photoGridImage.addEventListener('click', handleCardClick());
 
-  document.addEventListener('keydown', closePopupWithEscape);
 
-  if (popup.classList.contains('.popup_type_edit-profile')) {
-    if (profileName) {
-      popupName.value = profileName.textContent;
-    }
-
-    if (profileOccupation) {
-      popupOccupation.value = profileOccupation.textContent;
-    }
-  }
-};
-
-const renderCard = (data) => {
-  const card = new Card(data, cardTemplateSelector);
-  photoGridList.prepend(card.createCard());
-};
-
-initialCards.forEach((data) => {
-  renderCard(data, cardTemplateSelector);
-});
+// Edit Profile Form Functionality
 
 function submitEditProfileForm(evt) {
   evt.preventDefault();
@@ -119,8 +109,16 @@ function submitEditProfileForm(evt) {
   profileName.textContent = popupName.value;
   profileOccupation.textContent = popupOccupation.value;
 
-  closePopup(editProfilePopup);
+  close(editProfilePopup);
 };
+
+editButton.addEventListener('click', () => {
+  open(editProfilePopup);
+});
+
+const editProfilePopup = new PopupWithForm(submitEditProfileForm, editProfilePopupSelector);
+
+// Add Card Form Functionality
 
 function submitAddCardForm(evt) {
   evt.preventDefault();
@@ -132,33 +130,11 @@ function submitAddCardForm(evt) {
 
   renderCard(data, cardTemplateSelector);
 
-  closePopup(addCardPopup);
+  close(addCardPopup);
 };
 
-editButton.addEventListener('click', () => {
-  openPopup(editProfilePopup);
-});
-
-editProfileCloseButton.addEventListener('click', () => {
-  closePopup(editProfilePopup);
-});
-
-editProfileForm.addEventListener('submit', submitEditProfileForm);
-
 addButton.addEventListener('click', () => {
-  openPopup(addCardPopup);
+  open(addCardPopup);
 });
 
-addCardCloseButton.addEventListener('click', () => {
-  closePopup(addCardPopup);
-});
-
-addCardForm.addEventListener('submit', submitAddCardForm);
-
-window.addEventListener('click', (evt) => {
-  if (evt.target === editProfilePopup) {
-    closePopup(editProfilePopup);
-  } if (evt.target === addCardPopup) {
-    closePopup(addCardPopup);
-  }
-});
+const addCardPopup = new PopupWithForm(submitAddCardForm, addCardPopupSelector);

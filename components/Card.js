@@ -1,48 +1,11 @@
-//Image Popup
-
-const image = document.querySelector('.popup__image');
-const caption = document.querySelector('.popup__caption');
-const imagePopup = document.querySelector('.popup_type_image');
-const imagePopupCloseButton = imagePopup.querySelector('.close-button');
-
-//Functions
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-};
-
-function closePopupWithEscape(evt) {
-  const ESC_KEY = 27;
-  if (evt.which === ESC_KEY) {
-    closePopup(document.querySelector('.popup_opened'));
-    document.removeEventListener('keydown', closePopupWithEscape);
-  }
-};
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-
-  document.addEventListener('keydown', closePopupWithEscape);
-};
-
-imagePopupCloseButton.addEventListener('click', () => {
-  closePopup(imagePopup);
-});
-
-window.addEventListener('click', (evt) => {
-  if (evt.target === imagePopup) {
-    closePopup(imagePopup);
-  }
-});
-
-//Class
-
 class Card {
-  constructor (data, cardTemplateSelector) {
+  constructor (data, cardTemplateSelector, handleCardClick) {
     this._label = data.label;
     this._link = data.link;
 
     this._cardTemplateSelector = cardTemplateSelector;
+
+    this._handleCardClick = handleCardClick;
   };
 
   _toggleLike(likeButton) {
@@ -61,14 +24,7 @@ class Card {
     this._cardLabel= this._cardElements.querySelector('.photo-grid__label');
     this._cardLikeButton = this._cardElements.querySelector('.like-button');
 
-    this._cardImage.addEventListener('click', () => {
-      openPopup(imagePopup);
-      image.src = this._link;
-      image.alt = this._label;
-      caption.textContent = this._label;
-    });
-
-    this._cardTrashButton.addEventListener('click', (evt) => {
+    this._cardTrashButton.addEventListener('click', () => {
       this._cardElements.remove();
     });
 

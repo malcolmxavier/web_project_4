@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
     <title>Around The U.S.</title>
 </head>
 <body class='page'>
   <header class='header'>
-    <img src='./images/logo.svg' alt='Around The U.S. text logo' class='logo'>
+    <img src='../images/logo.svg' alt='Around The U.S. text logo' class='logo'>
   </header>
 
   <main class='content'>
     <section class='profile'>
-      <img src='./images/avatar_jacques-cousteau.jpg' alt='Profile avatar' class='avatar'>
+      <img src='../images/avatar_jacques-cousteau.jpg' alt='Profile avatar' class='avatar'>
       <div class='profile__info'>
           <h1 class='profile__name'>Jacques Cousteau</h1>
           <button class='edit-button' aria-label='Edit Profile'></button>
@@ -68,7 +67,7 @@
     <div class='popup__container popup__container_type_image'>
       <figure class='figure'>
         <button class='close-button' aria-label='Close Image Popup'></button>
-        <img src='' alt='' class='popup__image'>
+        <img class='popup__image'>
         <figcaption class='popup__caption'></figcaption>
       </figure>
     </div>
@@ -84,9 +83,5 @@
       </div>
     </li>
   </template>
-
-  <script type='module' src='./scripts/FormValidator.js'></script>
-  <script type='module' src='./scripts/Card.js'></script>
-  <script type='module' src='./scripts/index.js'></script>
 </body>
 </html>
