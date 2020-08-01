@@ -5,15 +5,16 @@ class Section {
       this._section = document.querySelector(sectionSelector);
   }
 
-  render() {
-    this._items.forEach((item) => {
-      this._renderer(item);
-    });
+  addItem(item) {
+    this._section.prepend(item);
   };
 
-  addItem() {
-    this._section.prepend(this._renderer());
+  render() {
+    this._items.forEach((item) => {
+      (this._renderer(item));
+    });
   };
 }
 
 export default Section;
+

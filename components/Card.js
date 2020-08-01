@@ -31,6 +31,10 @@ class Card {
     this._cardLikeButton.addEventListener('click', () => {
       this._toggleLike(this._cardLikeButton);
     });
+
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick({label: this._label, link: this._link})
+    });
   };
 
   createCard() {

@@ -5,14 +5,12 @@ class PopupWithImage extends Popup {
     super(popupSelector);
     this._image = document.querySelector('.popup__image');
     this._caption = document.querySelector('.popup__caption');
-    this._link = document.querySelector('.popup__input_type_url').value;
-    this._label = document.querySelector('.popup__input_type_label').value;
   }
 
-  open() {
-    this._image.src = this._link;
-    this._image.alt = this._label;
-    this._caption.textContent = this._label;
+  open(data) {
+    this._image.src = data.link;
+    this._image.alt = data.label;
+    this._caption.textContent = data.label;
 
     super.open();
   };

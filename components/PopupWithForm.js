@@ -2,30 +2,26 @@ import Popup from './Popup.js';
 
 class PopupWithForm extends Popup {
   constructor(submitForm, popupSelector) {
-    this.submitForm = submitForm;
+    super(popupSelector);
+    this._submitForm = submitForm;
     this._popupSelector = popupSelector;
+    this._popupForm = this._popup.querySelector('.popup__form');
     this._profileName = document.querySelector('.profile__name');
     this._profileOccupation = document.querySelector('.profile__occupation');
     this._popupName = document.querySelector('.popup__input_type_name');
     this._popupOccupation = document.querySelector('.popup__input_type_occupation');
-    super(popupSelector);
   }
 
   close() {
-    this._popup.reset();
+    this._popupForm.reset();
 
     super.close();
   };
 
   open() {
-    if (this._popup.classList.contains('.popup_type_edit-profile')) {
-      if (this._profileName) {
-        this._popupName.value = this._profileName.textContent;
-      }
-
-      if (this._profileOccupation) {
-       this._popupOccupation.value = this._profileOccupation.textContent;
-      }
+    if (this._popup.classList.contains('popup_type_edit-profile')) {
+      this._popupName.value = this._profileName.textContent;
+      this._popupOccupation.value = this._profileOccupation.textContent;
     }
 
     super.open();
@@ -38,7 +34,10 @@ class PopupWithForm extends Popup {
   };
 
   setEventListeners() {
-    this._popup.addEventListener('submit', submitForm);
+    this._popup.addEventListener('submit', (evt) => {
+      this._submitForm(evt);
+      this.close();
+    });
 
     super.setEventListeners();
   };

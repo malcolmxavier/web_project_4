@@ -46,7 +46,6 @@ const popupOccupation = document.querySelector('.popup__input_type_occupation');
 const imagePopupSelector = '.popup_type_image';
 const cardTemplateSelector = '.card-template';
 const photoGridListSelector = '.photo-grid__list';
-const photoGridImage = document.querySelectorAll('.photo-grid__image');
 
 const initialCards = [
   {
@@ -87,18 +86,20 @@ const addButton = document.querySelector('.add-button');
 
 const imagePopup = new PopupWithImage(imagePopupSelector);
 
-const handleCardClick = () => {
-  open(imagePopup)
+imagePopup.setEventListeners();
+
+const handleCardClick = (data) => {
+  imagePopup.open(data);
 }
 
 const renderCard = (item) => {
   const card = new Card(item, cardTemplateSelector, handleCardClick);
-  card.createCard();
+  photoGridList.addItem(card.createCard(item));
 };
 
-const photoGridList = new Section({initialCards, renderCard}, photoGridListSelector);
+const photoGridList = new Section({items: initialCards, renderer: renderCard}, photoGridListSelector);
 
-photoGridImage.addEventListener('click', handleCardClick());
+photoGridList.render();
 
 
 // Edit Profile Form Functionality
@@ -108,15 +109,15 @@ function submitEditProfileForm(evt) {
 
   profileName.textContent = popupName.value;
   profileOccupation.textContent = popupOccupation.value;
-
-  close(editProfilePopup);
 };
 
 editButton.addEventListener('click', () => {
-  open(editProfilePopup);
+  editProfilePopup.open();
 });
 
 const editProfilePopup = new PopupWithForm(submitEditProfileForm, editProfilePopupSelector);
+
+editProfilePopup.setEventListeners();
 
 // Add Card Form Functionality
 
@@ -128,13 +129,13 @@ function submitAddCardForm(evt) {
     link: addCardForm.querySelector('.popup__input_type_url').value
   };
 
-  renderCard(data, cardTemplateSelector);
-
-  close(addCardPopup);
+  renderCard(data);
 };
 
 addButton.addEventListener('click', () => {
-  open(addCardPopup);
+  addCardPopup.open();
 });
 
 const addCardPopup = new PopupWithForm(submitAddCardForm, addCardPopupSelector);
+
+addCardPopup.setEventListeners();
