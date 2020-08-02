@@ -5,16 +5,12 @@ class UserInfo {
   }
 
   getUserInfo() {
-    return this;
+    this._profile = {name: this._profileName, occupation: this._profileOccupation};
   };
 
   setUserInfo() {
-    const userInfo = this.getUserInfo();
-
-    this._userInfo = userInfo;
-
-    this._userInfo.querySelector('.profile__name').textContent = this._profileName;
-    this._userInfo.querySelector('.profile__occupation').textContent = this._profileOccupation;
+    document.querySelector('.profile__name').textContent = this._profileName;
+    document.querySelector('.profile__occupation').textContent = this._profileOccupation;
   };
 }
 
