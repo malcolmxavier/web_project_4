@@ -26,6 +26,7 @@ class Card {
 
     this._cardTrashButton.addEventListener('click', () => {
       this._cardElements.remove();
+      this._cardElements = null;
     });
 
     this._cardLikeButton.addEventListener('click', () => {
