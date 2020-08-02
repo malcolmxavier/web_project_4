@@ -28,14 +28,19 @@ class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const inputValues = document.querySelector(this._popupSelector).content.cloneNode(true);
+    this._inputList = this._popupForm.querySelectorAll('.popup__input');
 
-    return inputValues;
+    this._inputValues = {};
+    this._inputList.forEach(input => this._inputValues[input.name] = input.value);
+    console.log(this._inputValues);
+
+    return this._inputValues;
   };
 
   setEventListeners() {
     this._popup.addEventListener('submit', (evt) => {
-      this._submitForm(evt);
+      evt.preventDefault();
+      this._submitForm(this._getInputValues());
       this.close();
     });
 

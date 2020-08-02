@@ -52,10 +52,10 @@
       <button class='close-button' aria-label='Close Add Card Popup'></button>
       <h2 class='popup__title'>New Place</h2>
       <form class='popup__form popup__form_type_add-card'>
-        <input id='card-label' class='popup__input popup__input_type_label' type='text' placeholder='Label' required minlength="1" maxlength="30">
+        <input name='label' id='card-label' class='popup__input popup__input_type_label' type='text' placeholder='Label' required minlength="1" maxlength="30">
         <span id='card-label-error' class='popup__error'></span>
 
-        <input id='card-url' class='popup__input popup__input_type_url' type='url' placeholder='Image URL' required>
+        <input name='link' id='card-url' class='popup__input popup__input_type_url' type='url' placeholder='Image URL' required>
         <span id='card-url-error' class='popup__error'></span>
 
         <button class='popup__button save-button' type='submit' aria-label='Save Card'></button>

@@ -105,8 +105,6 @@ photoGridList.render();
 // Edit Profile Form Functionality
 
 function submitEditProfileForm(evt) {
-  evt.preventDefault();
-
   profileName.textContent = popupName.value;
   profileOccupation.textContent = popupOccupation.value;
 };
@@ -121,14 +119,7 @@ editProfilePopup.setEventListeners();
 
 // Add Card Form Functionality
 
-function submitAddCardForm(evt) {
-  evt.preventDefault();
-
-  const data = {
-    label: addCardForm.querySelector('.popup__input_type_label').value,
-    link: addCardForm.querySelector('.popup__input_type_url').value
-  };
-
+function submitAddCardForm(data) {
   renderCard(data);
 };
 
