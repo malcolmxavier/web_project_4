@@ -1,7 +1,7 @@
 class UserInfo {
-  constructor({profileName, profileOccupation}) {
-    this._profileName = profileName;
-    this._profileOccupation = profileOccupation;
+  constructor({popupName, popupOccupation}) {
+    this._profileName = popupName.value;
+    this._profileOccupation = popupOccupation.value;
   }
 
   getUserInfo() {
