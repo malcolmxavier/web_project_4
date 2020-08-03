@@ -27,6 +27,11 @@ const addCardValidation = new FormValidator(defaultSettings, addCardForm);
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
+//Profile
+
+const profileName = document.querySelector('.profile__name');
+const profileOccupation = document.querySelector('.profile__occupation');
+
 //Edit Profile Popup
 
 const editProfilePopupSelector = '.popup_type_edit-profile';
@@ -97,12 +102,10 @@ photoGridList.render();
 
 // Edit Profile Form Functionality
 
-function submitEditProfileForm() {
-  console.log(popupName, popupOccupation);
-  const profile = new UserInfo({popupName, popupOccupation})
+const profile = new UserInfo({profileName, profileOccupation})
 
-  console.log(profile._profileName, profile._profileOccupation);
-  profile.setUserInfo();
+function submitEditProfileForm() {
+  profile.setUserInfo(popupName, popupOccupation);
 };
 
 editButton.addEventListener('click', () => {

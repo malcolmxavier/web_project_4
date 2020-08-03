@@ -1,16 +1,18 @@
 class UserInfo {
-  constructor({popupName, popupOccupation}) {
-    this._profileName = popupName.value;
-    this._profileOccupation = popupOccupation.value;
+  constructor({profileName, profileOccupation}) {
+    this._profileName = profileName;
+    this._profileOccupation = profileOccupation;
   }
 
   getUserInfo() {
     this._profile = {name: this._profileName, occupation: this._profileOccupation};
   };
 
-  setUserInfo() {
-    document.querySelector('.profile__name').textContent = this._profileName;
-    document.querySelector('.profile__occupation').textContent = this._profileOccupation;
+  setUserInfo(popupName, popupOccupation) {
+    this._popupName = popupName.value;
+    this._popupOccupation = popupOccupation.value;
+    this._profileName.textContent = this._popupName;
+    this._profileOccupation.textContent = this._popupOccupation;
   };
 }
 
