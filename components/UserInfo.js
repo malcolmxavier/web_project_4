@@ -8,11 +8,16 @@ class UserInfo {
     this._profile = {name: this._profileName, occupation: this._profileOccupation};
   };
 
-  setUserInfo(popupName, popupOccupation) {
-    this._popupName = popupName.value;
-    this._popupOccupation = popupOccupation.value;
-    this._profileName.textContent = this._popupName;
-    this._profileOccupation.textContent = this._popupOccupation;
+  setUserInfo(userName, userOccupation) {
+    console.log(userName, userOccupation);
+    console.log(this._profileName);
+    console.log(this._profileOccupation);
+    console.log(this._profileName.textContent);
+    console.log(this._profileOccupation.textContent);
+    this._userName = userName;
+    this._userOccupation = userOccupation;
+    this._profileName.textContent = this._userName;
+    this._profileOccupation.textContent = this._userOccupation;
   };
 }
 

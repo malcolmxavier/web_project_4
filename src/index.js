@@ -7,6 +7,22 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import API from '../components/API.js';
+
+//API
+
+const api = new API({
+  baseURL: "https://around.nomoreparties.co/v1/group-3",
+  headers: {
+    authorization: "bfb84dd3-54e8-4642-a5bf-7fe819e5fd4b",
+    "Content-Type": "application/json"
+  }
+});
+
+// console.log(api.getUserInfo());
+// api.getUserInfo().then(res => {
+//   console.log(res.name, res.about)
+// });
 
 //Form Validation
 
@@ -32,12 +48,17 @@ addCardValidation.enableValidation();
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
 
+api.getUserInfo()
+.then(res => {
+  profile.setUserInfo(res.name, res.about)
+});
+
 //Edit Profile Popup
 
 const editProfilePopupSelector = '.popup_type_edit-profile';
 
-const popupName = document.querySelector('.popup__input_type_name');
-const popupOccupation = document.querySelector('.popup__input_type_occupation');
+const popupName = document.querySelector('.popup__input_type_name').value;
+const popupOccupation = document.querySelector('.popup__input_type_occupation').value;
 
 //Photo Grid
 
@@ -90,6 +111,10 @@ const handleCardClick = (data) => {
   imagePopup.open(data);
 }
 
+const handleDeleteCardClick = (cardID) => {
+  API.removeCard(cardID);
+}
+
 const renderCard = (item) => {
   const card = new Card(item, cardTemplateSelector, handleCardClick);
   photoGridList.addItem(card.createCard(item));
@@ -104,8 +129,8 @@ photoGridList.render();
 
 const profile = new UserInfo({profileName, profileOccupation})
 
-function submitEditProfileForm() {
-  profile.setUserInfo(popupName, popupOccupation);
+function submitEditProfileForm({userName, userOccupation}) {
+  profile.setUserInfo(userName, userOccupation);
 };
 
 editButton.addEventListener('click', () => {
