@@ -9,11 +9,6 @@ class UserInfo {
   };
 
   setUserInfo(userName, userOccupation) {
-    console.log(userName, userOccupation);
-    console.log(this._profileName);
-    console.log(this._profileOccupation);
-    console.log(this._profileName.textContent);
-    console.log(this._profileOccupation.textContent);
     this._userName = userName;
     this._userOccupation = userOccupation;
     this._profileName.textContent = this._userName;

@@ -14,7 +14,7 @@ class API {
   };
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me
-  setUserInfo() {
+  setUserInfo(name, about) {
     return fetch(this._baseURL + '/users/me', {
       headers: this._headers,
       method: "PATCH",
@@ -45,7 +45,7 @@ class API {
   };
 
   // GET https://around.nomoreparties.co/v1/groupId/cards
-  getInitialCards() {
+  getCardList() {
     return fetch(this._baseURL + '/cards', {
       headers: this._headers
     })

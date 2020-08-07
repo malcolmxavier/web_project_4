@@ -1,4 +1,4 @@
-Project name: Malcolm X's 4th, 5th, 6th, 7th, and 8th Yandex Project v5.0
+Project name: Malcolm X's 4th, 5th, 6th, 7th, 8th, and 9th Yandex Project v6.0
 
 This is a sample project to demonstrate grasp of HTML, CSS, and JS skills.
 
