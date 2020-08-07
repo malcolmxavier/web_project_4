@@ -4,7 +4,6 @@ class API {
     this._headers = headers;
   }
 
-  // GET https://around.nomoreparties.co/v1/groupId/users/me
   getUserInfo() {
     return fetch(this._baseURL + '/users/me', {
       headers: this._headers
@@ -44,7 +43,6 @@ class API {
 
   };
 
-  // GET https://around.nomoreparties.co/v1/groupId/cards
   getCardList() {
     return fetch(this._baseURL + '/cards', {
       headers: this._headers
