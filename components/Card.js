@@ -3,6 +3,7 @@ class Card {
     this._label = data.name;
     this._link = data.link;
     this._cardID = data._id;
+    this._likesCount = data.likes.length;
 
     this._cardTemplateSelector = cardTemplateSelector;
 
@@ -27,7 +28,6 @@ class Card {
   _addEventListeners() {
     this._cardImage = this._cardElements.querySelector('.photo-grid__image');
     this._cardTrashButton = this._cardElements.querySelector('.trash-button');
-    this._cardLabel= this._cardElements.querySelector('.photo-grid__label');
     this._cardLikeButton = this._cardElements.querySelector('.like-button');
 
     this._cardTrashButton.addEventListener('click', () => {
@@ -52,6 +52,7 @@ class Card {
 
     this._cardElements.querySelector('.photo-grid__image').style.backgroundImage = `url(${this._link})`;
     this._cardElements.querySelector('.photo-grid__label').textContent = this._label;
+    this._cardElements.querySelector('.photo-grid__likes-count').textContent = this._likesCount;
 
     this._addEventListeners();
 

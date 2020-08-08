@@ -1,0 +1,8 @@
+.photo-grid__likes-count {
+  text-align: center;
+  font-size: .8125rem;
+  line-height: 1rem;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}

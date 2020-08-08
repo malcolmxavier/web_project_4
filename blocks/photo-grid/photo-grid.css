@@ -8,6 +8,10 @@
 
 @import url('./__label/photo-grid__label.css');
 
+@import url('./__likes/photo-grid__likes.css');
+
+@import url('./__likes-count/photo-grid__likes-count.css');
+
 .photo-grid {
   margin: 36px 19px 0 19px;
   padding: 0;

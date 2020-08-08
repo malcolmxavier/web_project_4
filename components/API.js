@@ -51,7 +51,6 @@ class API {
     .catch(err => console.log(err))
   };
 
-  // POST https://around.nomoreparties.co/v1/groupId/cards
   addCard({name, link}) {
     return fetch(this._baseURL + '/cards', {
       headers: this._headers,
