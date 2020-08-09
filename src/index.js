@@ -106,10 +106,9 @@ api.getCardList()
     imagePopup.setEventListeners();
 
     function submitDeleteCardForm() {
-      console.log(deleteCardPopup._cardID);
-
       api.removeCard(deleteCardPopup._cardID)
-      .then(console.log(api.getCardList()))
+      deleteCardPopup._cardElements.remove();
+      deleteCardPopup._cardElements = null;
     }
 
     const deleteCardPopup = new PopupWithForm(submitDeleteCardForm, deleteCardPoupSelector);
@@ -120,10 +119,10 @@ api.getCardList()
       imagePopup.open(item);
     }
 
-    const handleDeleteCardClick = (item) => {
-      deleteCardPopup._cardID = item;
-      console.log(deleteCardPopup._cardID);
+    const handleDeleteCardClick = (cardID, cardElements) => {
       deleteCardPopup.open();
+      deleteCardPopup._cardID = cardID;
+      deleteCardPopup._cardElements = cardElements;
     }
 
     const card = new Card(item, cardTemplateSelector, handleCardClick, handleDeleteCardClick);
@@ -136,10 +135,8 @@ api.getCardList()
   photoGridList.render();
 
   function submitAddCardForm(data) {
-    console.log(data);
     api.addCard(data)
     .then(res => {
-      console.log(res);
       renderCard(res);
     })
   };
