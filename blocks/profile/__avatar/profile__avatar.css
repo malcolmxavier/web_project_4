@@ -1,0 +1,7 @@
+.profile__avatar {
+  position: relative;
+}
+
+.profile__avatar:hover .edit-overlay {
+  opacity: 1;
+}

@@ -16,6 +16,8 @@
 
 @import url('../blocks/edit-button/edit-button.css');
 
+@import url('../blocks/edit-button/_avatar/edit-button_avatar.css');
+
 @import url('../blocks/add-button/add-button.css');
 
 @import url('../blocks/popup/popup.css');

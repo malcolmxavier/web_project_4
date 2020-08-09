@@ -3,8 +3,7 @@ class Card {
     this._label = data.name;
     this._link = data.link;
     this._cardID = data._id;
-    console.log(data);
-    // this._likesCount = data.likes.length;
+    this._likesCount = data.likes.length;
 
     this._cardTemplateSelector = cardTemplateSelector;
 

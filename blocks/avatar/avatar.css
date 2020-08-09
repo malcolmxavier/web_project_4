@@ -1,3 +1,5 @@
+@import url('./__edit-overlay/avatar__edit-overlay.css');
+
 .avatar {
   width: 120px;
   height: 120px;

@@ -30,28 +30,51 @@ const defaultSettings = {
   errorClass: "popup__error_visible"
 };
 
+const editAvatarForm = document.querySelector('.popup__form_type_edit-avatar');
 const editProfileForm = document.querySelector('.popup__form_type_edit-profile');
 const addCardForm = document.querySelector('.popup__form_type_add-card');
 
+const editAvatarValidation = new FormValidator(defaultSettings, editAvatarForm);
 const editProfileValidation = new FormValidator(defaultSettings, editProfileForm);
 const addCardValidation = new FormValidator(defaultSettings, addCardForm);
 
+editAvatarValidation.enableValidation();
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
 //Profile
 
+const profileAvatar = document.querySelector('.avatar_profile');
+const editAvatarButton = document.querySelector('.edit-button_avatar');
+const editAvatarPopupSelector = '.popup_type_edit-avatar';
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
-const editButton = document.querySelector('.edit-button');
+const editProfileButton = document.querySelector('.edit-button_profile');
 const editProfilePopupSelector = '.popup_type_edit-profile';
 
 api.getUserInfo()
 .then(res => {
-  profile.setUserInfo(res.name, res.about)
+  profileAvatar.src = res.avatar;
+  console.log(profileAvatar.src);
+  profile.setUserInfo(res.name, res.about);
 });
 
-const profile = new UserInfo({profileName, profileOccupation})
+function submitEditAvatarForm({avatar}) {
+  console.log(avatar);
+  profileAvatar.src = avatar;
+  api.setUserAvatar(avatar);
+  console.log(api.getUserInfo());
+}
+
+const editAvatarPopup = new PopupWithForm(submitEditAvatarForm, editAvatarPopupSelector);
+
+editAvatarPopup.setEventListeners();
+
+editAvatarButton.addEventListener('click', () => {
+  editAvatarPopup.open();
+})
+
+const profile = new UserInfo({profileName, profileOccupation});
 
 function submitEditProfileForm({userName, userOccupation}) {
   profile.setUserInfo(userName, userOccupation);
@@ -62,13 +85,12 @@ const editProfilePopup = new PopupWithForm(submitEditProfileForm, editProfilePop
 
 editProfilePopup.setEventListeners();
 
-editButton.addEventListener('click', () => {
+editProfileButton.addEventListener('click', () => {
   editProfilePopup.open();
 });
 
 //Cards
 
-const trashButton = document.querySelectorAll('.trash-button');
 const deleteCardPoupSelector = '.popup_type_delete-card';
 const imagePopupSelector = '.popup_type_image';
 const cardTemplateSelector = '.card-template';

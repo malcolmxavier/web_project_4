@@ -12,7 +12,6 @@ class API {
     .catch(err => console.log(err))
   };
 
-  // PATCH https://around.nomoreparties.co/v1/groupId/users/me
   setUserInfo(name, about) {
     return fetch(this._baseURL + '/users/me', {
       headers: this._headers,
@@ -26,8 +25,7 @@ class API {
     .catch(err => console.log(err))
   };
 
-  // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
-  setUserAvatar() {
+  setUserAvatar(avatar) {
     return fetch(this._baseURL + '/users/me/avatar', {
       headers: this._headers,
       method: "PATCH",
@@ -51,13 +49,13 @@ class API {
     .catch(err => console.log(err))
   };
 
-  addCard() {
+  addCard({name, link}) {
     return fetch(this._baseURL + '/cards', {
       headers: this._headers,
       method: "POST",
       body: JSON.stringify({
-        name,
-        link
+        name: name,
+        link: link
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status + ' Error: ' + res.statusText))

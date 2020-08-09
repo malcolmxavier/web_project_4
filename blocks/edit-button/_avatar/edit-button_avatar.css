@@ -1,0 +1,7 @@
+.edit-button_avatar {
+  top: 40%;
+  right: 40%;
+  background-image: url('../../../images/edit-button_avatar.png');
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}
