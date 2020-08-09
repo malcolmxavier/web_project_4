@@ -3,7 +3,8 @@ class Card {
     this._label = data.name;
     this._link = data.link;
     this._cardID = data._id;
-    this._likesCount = data.likes.length;
+    console.log(data);
+    // this._likesCount = data.likes.length;
 
     this._cardTemplateSelector = cardTemplateSelector;
 
@@ -31,9 +32,10 @@ class Card {
     this._cardLikeButton = this._cardElements.querySelector('.like-button');
 
     this._cardTrashButton.addEventListener('click', () => {
-      handleDeleteCardClick(this._cardID);
-      this._cardElements.remove();
-      this._cardElements = null;
+      // console.log(this._cardID);
+      this._handleDeleteCardClick(this._cardID);
+      // this._cardElements.remove();
+      // this._cardElements = null;
     });
 
     this._cardLikeButton.addEventListener('click', () => {

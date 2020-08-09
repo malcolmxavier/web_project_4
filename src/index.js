@@ -8,6 +8,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import API from '../components/API.js';
+import Popup from '../components/Popup';
 
 //API
 
@@ -67,24 +68,44 @@ editButton.addEventListener('click', () => {
 
 //Cards
 
+const trashButton = document.querySelectorAll('.trash-button');
+const deleteCardPoupSelector = '.popup_type_delete-card';
 const imagePopupSelector = '.popup_type_image';
 const cardTemplateSelector = '.card-template';
 const photoGridListSelector = '.photo-grid__list';
 const addButton = document.querySelector('.add-button');
 const addCardPopupSelector = '.popup_type_add-card';
 
-const handleCardClick = (data) => {
-  imagePopup.open(data);
-}
-
-const handleDeleteCardClick = (cardID) => {
-  api.removeCard(cardID);
-}
-
 api.getCardList()
 .then(res => {
   const renderCard = (item) => {
+    const imagePopup = new PopupWithImage(imagePopupSelector);
+
+    imagePopup.setEventListeners();
+
+    function submitDeleteCardForm() {
+      console.log(deleteCardPopup._cardID);
+
+      api.removeCard(deleteCardPopup._cardID)
+      .then(console.log(api.getCardList()))
+    }
+
+    const deleteCardPopup = new PopupWithForm(submitDeleteCardForm, deleteCardPoupSelector);
+
+    deleteCardPopup.setEventListeners();
+
+    const handleCardClick = (item) => {
+      imagePopup.open(item);
+    }
+
+    const handleDeleteCardClick = (item) => {
+      deleteCardPopup._cardID = item;
+      console.log(deleteCardPopup._cardID);
+      deleteCardPopup.open();
+    }
+
     const card = new Card(item, cardTemplateSelector, handleCardClick, handleDeleteCardClick);
+
     photoGridList.addItem(card.createCard(item));
   };
 
@@ -93,9 +114,11 @@ api.getCardList()
   photoGridList.render();
 
   function submitAddCardForm(data) {
+    console.log(data);
     api.addCard(data)
     .then(res => {
-      renderCard(data);
+      console.log(res);
+      renderCard(res);
     })
   };
 
@@ -107,9 +130,3 @@ api.getCardList()
 
   addCardPopup.setEventListeners();
 })
-
-
-
-const imagePopup = new PopupWithImage(imagePopupSelector);
-
-imagePopup.setEventListeners();

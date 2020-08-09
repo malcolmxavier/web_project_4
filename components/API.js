@@ -51,7 +51,7 @@ class API {
     .catch(err => console.log(err))
   };
 
-  addCard({name, link}) {
+  addCard() {
     return fetch(this._baseURL + '/cards', {
       headers: this._headers,
       method: "POST",
@@ -64,9 +64,8 @@ class API {
     .catch(err => console.log(err))
   };
 
-  // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
-  removeCard(cardID) {
-    return fetch(this._baseURL + '/cards/' + cardID, {
+  removeCard(_id) {
+    return fetch(this._baseURL + '/cards/' + _id, {
       headers: this._headers,
       method: "DELETE"
     })
