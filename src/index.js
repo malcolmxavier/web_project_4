@@ -55,15 +55,12 @@ const editProfilePopupSelector = '.popup_type_edit-profile';
 api.getUserInfo()
 .then(res => {
   profileAvatar.src = res.avatar;
-  console.log(profileAvatar.src);
   profile.setUserInfo(res.name, res.about);
 });
 
 function submitEditAvatarForm({avatar}) {
-  console.log(avatar);
   profileAvatar.src = avatar;
   api.setUserAvatar(avatar);
-  console.log(api.getUserInfo());
 }
 
 const editAvatarPopup = new PopupWithForm(submitEditAvatarForm, editAvatarPopupSelector);
