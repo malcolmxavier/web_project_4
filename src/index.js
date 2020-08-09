@@ -8,7 +8,6 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import API from '../components/API.js';
-import Popup from '../components/Popup';
 
 //API
 
@@ -95,54 +94,68 @@ const photoGridListSelector = '.photo-grid__list';
 const addButton = document.querySelector('.add-button');
 const addCardPopupSelector = '.popup_type_add-card';
 
-api.getCardList()
+api.getUserInfo()
 .then(res => {
-  const renderCard = (item) => {
-    const imagePopup = new PopupWithImage(imagePopupSelector);
+  const userID = res._id;
+  api.getCardList()
+  .then(res => {
+    const renderCard = (item) => {
+      const imagePopup = new PopupWithImage(imagePopupSelector);
 
-    imagePopup.setEventListeners();
+      imagePopup.setEventListeners();
 
-    function submitDeleteCardForm() {
-      api.removeCard(deleteCardPopup._cardID)
-      deleteCardPopup._cardElements.remove();
-      deleteCardPopup._cardElements = null;
-    }
+      function submitDeleteCardForm() {
+        api.removeCard(deleteCardPopup._cardID)
+        deleteCardPopup._cardElements.remove();
+        deleteCardPopup._cardElements = null;
+      }
 
-    const deleteCardPopup = new PopupWithForm(submitDeleteCardForm, deleteCardPoupSelector);
+      const deleteCardPopup = new PopupWithForm(submitDeleteCardForm, deleteCardPoupSelector);
 
-    deleteCardPopup.setEventListeners();
+      deleteCardPopup.setEventListeners();
 
-    const handleCardClick = (item) => {
-      imagePopup.open(item);
-    }
+      const handleCardClick = (item) => {
+        imagePopup.open(item);
+      }
 
-    const handleDeleteCardClick = (cardID, cardElements) => {
-      deleteCardPopup.open();
-      deleteCardPopup._cardID = cardID;
-      deleteCardPopup._cardElements = cardElements;
-    }
+      const handleDeleteCardClick = (cardID, cardElements) => {
+        deleteCardPopup.open();
+        deleteCardPopup._cardID = cardID;
+        deleteCardPopup._cardElements = cardElements;
+      }
 
-    const card = new Card(item, cardTemplateSelector, handleCardClick, handleDeleteCardClick);
+      const handleAddCardLike = (cardID) => {
+        api.addCardLike(cardID);
+      }
 
-    photoGridList.addItem(card.createCard(item));
-  };
+      const handleRemoveCardLike = (cardID) => {
+        api.removeCardLike(cardID);
+      }
 
-  const photoGridList = new Section({items: res, renderer: renderCard}, photoGridListSelector);
+      const card = new Card(item, userID, cardTemplateSelector, handleCardClick, handleDeleteCardClick, handleAddCardLike, handleRemoveCardLike);
 
-  photoGridList.render();
+      photoGridList.addItem(card.createCard(item));
+    };
 
-  function submitAddCardForm(data) {
-    api.addCard(data)
-    .then(res => {
-      renderCard(res);
-    })
-  };
+    const photoGridList = new Section({items: res, renderer: renderCard}, photoGridListSelector);
 
-  const addCardPopup = new PopupWithForm(submitAddCardForm, addCardPopupSelector);
+    photoGridList.render();
 
-  addButton.addEventListener('click', () => {
-    addCardPopup.open();
-  });
+    function submitAddCardForm(data) {
+      api.addCard(data)
+      .then(res => {
+        renderCard(res);
+      })
+    };
 
-  addCardPopup.setEventListeners();
+    const addCardPopup = new PopupWithForm(submitAddCardForm, addCardPopupSelector);
+
+    addButton.addEventListener('click', () => {
+      addCardPopup.open();
+    });
+
+    addCardPopup.setEventListeners();
+  })
 })
+
+console.log(api.getCardList());

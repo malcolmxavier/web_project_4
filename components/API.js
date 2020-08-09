@@ -37,10 +37,6 @@ class API {
     .catch(err => console.log(err))
   };
 
-  getAppInfo() {
-
-  };
-
   getCardList() {
     return fetch(this._baseURL + '/cards', {
       headers: this._headers
@@ -71,23 +67,23 @@ class API {
     .catch(err => console.log(err))
   };
 
-  // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  // changeCardLikeStatus(cardID) {
-  //   return fetch(this._baseURL + '/cards/likes/' + cardID, {
-  //     headers: this._headers,
-  //     method: "PUT",
-  //   })
-  //   .then(res => res.ok ? res.json() : Promise.reject(res.status + ' Error: ' + res.statusText))
-  //   .catch(err => console.log(err))
+  addCardLike(_id) {
+    return fetch(this._baseURL + '/cards/likes/' + _id, {
+      headers: this._headers,
+      method: "PUT",
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(res.status + ' Error: ' + res.statusText))
+    .catch(err => console.log(err))
+  };
 
-  //   return fetch(this._baseURL + '/cards/likes/' + cardID, {
-  //     headers: this._headers,
-  //     method: "DELETE",
-  //   })
-  //   .then(res => res.ok ? res.json() : Promise.reject(res.status + ' Error: ' + res.statusText))
-  //   .catch(err => console.log(err))
-  // };
+  removeCardLike(_id) {
+    return fetch(this._baseURL + '/cards/likes/' + _id, {
+      headers: this._headers,
+      method: "DELETE",
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(res.status + ' Error: ' + res.statusText))
+    .catch(err => console.log(err))
+  };
 }
 
 export default API;
