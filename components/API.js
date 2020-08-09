@@ -25,7 +25,7 @@ class API {
     .catch(err => console.log(err))
   };
 
-  setUserAvatar() {
+  setUserAvatar(avatar) {
     return fetch(this._baseURL + '/users/me/avatar', {
       headers: this._headers,
       method: "PATCH",

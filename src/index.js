@@ -99,7 +99,7 @@ api.getUserInfo()
 .then(res => {
   const userID = res._id;
   api.getCardList()
-  .then(res => {
+  .then(result => {
     const renderCard = (item) => {
       const imagePopup = new PopupWithImage(imagePopupSelector);
 
@@ -115,8 +115,8 @@ api.getUserInfo()
 
       deleteCardPopup.setEventListeners();
 
-      const handleCardClick = (item) => {
-        imagePopup.open(item);
+      const handleCardClick = (cardData) => {
+        imagePopup.open(cardData);
       }
 
       const handleDeleteCardClick = (cardID, cardElements) => {
@@ -138,14 +138,14 @@ api.getUserInfo()
       photoGridList.addItem(card.createCard(item));
     };
 
-    const photoGridList = new Section({items: res, renderer: renderCard}, photoGridListSelector);
+    const photoGridList = new Section({items: result, renderer: renderCard}, photoGridListSelector);
 
     photoGridList.render();
 
     function submitAddCardForm(data) {
       api.addCard(data)
-      .then(res => {
-        renderCard(res);
+      .then(newCard => {
+        renderCard(newCard);
       })
     };
 
