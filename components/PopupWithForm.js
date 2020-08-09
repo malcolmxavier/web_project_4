@@ -39,6 +39,7 @@ class PopupWithForm extends Popup {
   setEventListeners() {
     this._popup.addEventListener('submit', (evt) => {
       evt.preventDefault();
+      this._popup.querySelector('.popup__button').className = 'popup__button saving-button';
       this._submitForm(this._getInputValues());
       this.close();
     });

@@ -74,7 +74,8 @@ const profile = new UserInfo({profileName, profileOccupation});
 
 function submitEditProfileForm({userName, userOccupation}) {
   profile.setUserInfo(userName, userOccupation);
-  api.setUserInfo(userName, userOccupation);
+  api.setUserInfo(userName, userOccupation)
+  // .then(button.className = 'popup__button saving-button');
 };
 
 const editProfilePopup = new PopupWithForm(submitEditProfileForm, editProfilePopupSelector);
@@ -157,5 +158,3 @@ api.getUserInfo()
     addCardPopup.setEventListeners();
   })
 })
-
-console.log(api.getCardList());
