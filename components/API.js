@@ -12,7 +12,6 @@ class API {
     .catch(err => console.log(err))
   };
 
-  // PATCH https://around.nomoreparties.co/v1/groupId/users/me
   setUserInfo(name, about) {
     return fetch(this._baseURL + '/users/me', {
       headers: this._headers,
@@ -26,7 +25,6 @@ class API {
     .catch(err => console.log(err))
   };
 
-  // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
   setUserAvatar() {
     return fetch(this._baseURL + '/users/me/avatar', {
       headers: this._headers,

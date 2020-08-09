@@ -2,9 +2,9 @@ class Card {
   constructor (data, cardTemplateSelector, handleCardClick, handleDeleteCardClick) {
     this._label = data.name;
     this._link = data.link;
+    this._owner = data.owner._id;
     this._cardID = data._id;
-    console.log(data);
-    // this._likesCount = data.likes.length;
+    this._likesCount = data.likes.length;
 
     this._cardTemplateSelector = cardTemplateSelector;
 
@@ -14,6 +14,11 @@ class Card {
 
   getCardID() {
     return this._cardID;
+  }
+
+  remove() {
+    this._cardElements.remove();
+    this._cardElements = null;
   }
 
   _toggleLike(likeButton) {
@@ -32,10 +37,7 @@ class Card {
     this._cardLikeButton = this._cardElements.querySelector('.like-button');
 
     this._cardTrashButton.addEventListener('click', () => {
-      // console.log(this._cardID);
-      this._handleDeleteCardClick(this._cardID);
-      // this._cardElements.remove();
-      // this._cardElements = null;
+      this._handleDeleteCardClick(this._cardID, this._cardElements);
     });
 
     this._cardLikeButton.addEventListener('click', () => {
